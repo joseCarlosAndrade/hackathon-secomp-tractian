@@ -8,6 +8,8 @@ from flask import Flask, request, jsonify
 import sqlite3
 import DB_Handler as db
 
+from gpt.GPTHandler import LLMHandler
+
 # import gpt.api
 
 class FlaskServer:
@@ -17,11 +19,24 @@ class FlaskServer:
         self.app.add_url_rule('/', view_func=self.__root_callback, methods=["GET"])
         self.app.add_url_rule('/operator', view_func=self.__create_operator, methods=["POST"])
         self.app.add_url_rule('/task', view_func=self.__create_task, methods=["POST"])
+        self.app.add_url_rule('/generate', view_func=self.__generate_manual, methods=["GET"])
 
         self.__db_handler = db.DataBaseHandler("data.db")
 
+        self.__llm = LLMHandler()
+        self.__llm.initialize_client("1") # for tests pourposes, initializing single client
+
+
     def __root_callback(self):
         return jsonify({"status" : "ok"}), 200
+
+    def __generate_manual(self):
+        description = request.args.get("description")
+
+        if description == "":
+            return jsonify({"message" : "missing param description"}, 400)
+
+        return jsonify(self.__llm.generate_json(description, "1"))
 
     def __create_operator(self):
         try:
@@ -84,3 +99,12 @@ class FlaskServer:
 
         except Exception as e:
             return jsonify({'error': str(e)}), 500
+
+    def run(self):
+        print("flask running on port 5000")
+        self.app.run(host="0.0.0.0", port=5000)
+
+# running for debug 
+if __name__ == '__main__':
+    flask_server = FlaskServer()
+    flask_server.run()

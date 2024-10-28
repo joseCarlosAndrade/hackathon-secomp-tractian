@@ -1,11 +1,11 @@
 import json
 import os
 from openai import OpenAI
-import prompts
-import pdf
+import gpt.prompts as prompts
+import gpt.pdf as pdf
 from pydantic import BaseModel
 from typing import List
-from json_response import json_data
+from gpt.json_response import json_data 
 # class Tool:
 #     code : str
 #     name: str  
@@ -115,7 +115,8 @@ class LLMHandler:
         # generate_tool = prompts.GENERATE_TOOLS
         # raw_tools = self.exec_prompt(generate_tool, client)
         raw_tools = json_data
-        tools = self.filter_json_tools(raw_tools)
+        # tools = self.filter_json_tools(raw_tools)
+        print(raw_tools)
 
         # estimated time
         generate_time = prompts.GENERATE_ESTIMATED_TIME
@@ -123,6 +124,12 @@ class LLMHandler:
 
         print(time)
 
+        json = self.fill_json(title, description, steps, raw_tools, time)
+
+        print("\n final json")
+        print(json)
+
+        return json
 
     def filter_json_tools(self, data):
         cleaned_json_string = data.strip("```json").strip("```")
@@ -160,6 +167,27 @@ class LLMHandler:
         response = self.exec_prompt(prompt, client)
 
         print(response) 
+
+    def fill_json(self, title: str, description : str, suggested_steps, suggested_tools, estimated_time ):
+        # tools = []
+        # for tool in suggested_tools:
+        #     tools.append({
+        #         "code" : tool[],
+        #         "name" : ,
+        #         "quantity" :,
+        #         "manual" : ,
+        #     })
+
+        json = {
+            "title" : title,
+            "description" : description,
+
+            "suggestedSteps" : suggested_steps,
+            "suggestedTools" : suggested_tools,
+            "estimatedTime" : estimated_time
+        }
+
+        return json
     
 
 if __name__ == "__main__" :
@@ -188,23 +216,3 @@ suggested_tools : [
     }
 ]
 """
-def fill_json(title: str, description : str, suggested_steps, suggested_tools, estimated_time ):
-    # tools = []
-    # for tool in suggested_tools:
-    #     tools.append({
-    #         "code" : tool[],
-    #         "name" : ,
-    #         "quantity" :,
-    #         "manual" : ,
-    #     })
-
-    json = {
-        "title" : title,
-        "description" : description,
-
-        "suggestedSteps" : suggested_steps,
-        "suggestedTools" : suggested_tools,
-        "estimatedTime" : estimated_time
-    }
-
-    return json
