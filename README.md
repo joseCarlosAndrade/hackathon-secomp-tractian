@@ -6,6 +6,14 @@ Com a nossa solução, supervisores podem atribuir tarefas pelo nosso site atrav
 
 O foco da nossa plataforma é o uso mobile instantâneo, genrando relatórios precisos da atividade a ser realizada pelos operadores. Ela também considera as barreiras linguísticas de manuais em diferentes idiomas que português, sendo capaz de consumir conteúdos em qualquer linguagem e responder em português.
 
+## Testes!
+
+É possível testar a plataforma com o seguinte exemplo:
+
+```bash
+http://localhost:5000/generate?description="Realizar uma inspeção detalhada na Peneira Poligonal para garantir que não há acúmulo de resíduos que possam comprometer seu funcionamento. Verificar o aquecimento do equipamento e o nível de ruído durante a operação."
+```
+
 ## Arquitetura
 
 Nossa plataforma consiste em um site focado para mobile construído em `Reactjs`, que se comunica com nosso __backend__ feito em `Flask` (Python).
