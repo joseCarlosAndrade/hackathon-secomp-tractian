@@ -11,7 +11,7 @@ interface DataContextType {
 const DataContext = createContext<DataContextType | undefined>(undefined);
 
 export const DataProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [responseData, setResponseData] = useState<any>(null); // Manage the shared data state
+  const [responseData, setResponseData] = useState<any>([]); // Manage the shared data state
 
   return (
     <DataContext.Provider value={{ responseData, setResponseData }}>

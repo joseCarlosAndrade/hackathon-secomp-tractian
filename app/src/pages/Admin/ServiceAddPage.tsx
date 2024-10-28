@@ -20,20 +20,20 @@ const ServiceAdd: React.FC<ServiceAddProps> = ({ maintainer }) => {
     setError(null);
 
     try {
-      const response = await fetch("https://your-backend-url.com/api", {
-        method: "POST",
+      const response = await fetch(`/generategenerate?description=${content}`, {
+        method: "GET",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ text: content }),
       });
 
       if (!response.ok) {
         throw new Error("Request failed!");
       }
 
-      const data : ServiceModel[] = await response.json();
-      setResponseData(data); // Set data from response
+      const data: ServiceModel[] = await response.json();
+      console.log(data);
+      setResponseData([data]); // Set data from response
     } catch (err) {
       console.log(err);
     } finally {
