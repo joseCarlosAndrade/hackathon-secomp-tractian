@@ -16,6 +16,7 @@ class FlaskServer:
     def __init__(self):
 
         FlaskServer.app = Flask(__name__)
+        
         self.app.add_url_rule('/', view_func=self.__root_callback, methods=["GET"])
         self.app.add_url_rule('/operator', view_func=self.__create_operator, methods=["POST"])
         self.app.add_url_rule('/task', view_func=self.__create_task, methods=["POST"])
