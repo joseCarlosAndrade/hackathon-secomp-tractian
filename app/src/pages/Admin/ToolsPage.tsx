@@ -69,11 +69,10 @@ const toolList: ToolModel[] = [
 ];
 
 const ToolsPage: React.FC = () => {
-  const navigate = useNavigate();
 
   return (
     <div className="min-h-screen bg-gray-100 p-4 w-screen pt-24">
-      <h1 className="text-3xl font-bold mb-4 text-black">Manutentores</h1>
+      <h1 className="text-3xl font-bold mb-4 text-black">Ferramentas Disponíveis</h1>
       <div className="space-y-4">
         {toolList.map((tool, index) => (
           <div
@@ -84,14 +83,6 @@ const ToolsPage: React.FC = () => {
               <h2 className="text-lg font-semibold text-black">{tool.name}</h2>
               <p className="text-gray-500">Código: {tool.code}</p>
               <p className="text-gray-500">Quantidade: {tool.quantity}</p>
-            </div>
-            <div className="flex space-x-2">
-              <button
-                onClick={() => navigate(`/admin/tools/${tool.code}`)}
-                className="bg-blue-100 text-blue-600 p-2 rounded-full hover:bg-blue-200"
-              >
-                <UserIcon className="w-5 h-5" />
-              </button>
             </div>
           </div>
         ))}
