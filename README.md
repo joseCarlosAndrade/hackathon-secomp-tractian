@@ -8,10 +8,45 @@ O foco da nossa plataforma é o uso mobile instantâneo, genrando relatórios pr
 
 ## Testes!
 
-É possível testar a plataforma com o seguinte exemplo:
+É possível testar a plataforma com o seguinte exemplo abaixo. Basta realizar um GET na url especificada passando a descriao como parâmetro de query, e a API faz o resto automaticamente! Ela é responsável por construir os prompts e fazer o parsing correto de cada resposta para construir a tarefa final.
 
 ```bash
-http://localhost:5000/generate?description="Realizar uma inspeção detalhada na Peneira Poligonal para garantir que não há acúmulo de resíduos que possam comprometer seu funcionamento. Verificar o aquecimento do equipamento e o nível de ruído durante a operação."
+curl http://localhost:5000/generate?description="Realizar uma inspeção detalhada na Peneira Poligonal para garantir que não há acúmulo de resíduos que possam comprometer seu funcionamento. Verificar o aquecimento do equipamento e o nível de ruído durante a operação."
+```
+
+A tarefa final é gerada seguindo o seguinte template:
+
+```json
+{
+  "data": [
+    {
+      "title": "Routine Inspection",
+      "description": "A general inspection service to ensure the equipment is functioning properly.",
+      "suggestedSteps": [
+        "Turn off the power",
+        "Inspect all moving parts",
+        "Check for loose screws",
+        "Test equipment functionality after inspection"
+      ],
+      "suggestedTools": [
+        {
+          "code": "T001",
+          "name": "Inspection Flashlight",
+          "quantity": 1,
+          "manual": "https://example.com/inspection-flashlight-manual.pdf"
+        },
+        {
+          "code": "T002",
+          "name": "Adjustable Wrench",
+          "quantity": 1,
+          "manual": "https://example.com/adjustable-wrench-manual.pdf"
+        }
+      ],
+      "estimatedTime": 60,
+    }
+  ]
+}
+
 ```
 
 ## Arquitetura
@@ -20,9 +55,7 @@ Nossa plataforma consiste em um site focado para mobile construído em `Reactjs`
 
 O __backend__ serve uma REST API que lida com as interações com o banco de dados em `sqlite` (feito em `api/DB_Handler.py`) e com o handler do `chatgpt` (disponível em `gpt/GPTHandler.py`).
 
-Os __endpoints__ disponíveis para interações com o __backend__ são:
-
-**TODO**
+Os __endpoints__ disponíveis para interações com o __backend__ são visíveis em `server.py`.
 
 ## Instruções
 
@@ -38,3 +71,10 @@ pip install PyMuPDF
 Preencher o aquivo `.env` dentro do pacote `gpt/` usando o `.env.example` como guia para a autenticação na plataforma **OpenAi**.
 
 ## Execução da API
+
+Basta iniciar o flask:
+
+```bash
+cd api
+python3 server.py
+```
