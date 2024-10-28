@@ -1,0 +1,119 @@
+{
+  "id": "1",
+  "data": "20/12/2002",
+  "tarefasManutencao": [
+      {
+          "nome": "blah 1",
+          "status": "Pendente",
+          "descricao": "Troca de correia da esteira transportadora",
+          "tempo": "2 horas",
+          "data": "2024-10-30",
+          "etapas": [
+              {
+                  "etapa": "Desligar a máquina"
+              },
+              {
+                  "etapa": "Remover a correia antiga"
+              },
+              {
+                  "etapa": "Instalar a nova correia"
+              },
+              {
+                  "etapa": "Testar a máquina"
+              }
+          ],
+          "ferramentasSugeridas": [
+              {
+                  "nomeFerramenta": "Chave de fenda",
+                  "codigoFerramenta": "FND001",
+                  "quantidadeDisponivel": 15
+              },
+              {
+                  "nomeFerramenta": "Alicate de pressão",
+                  "codigoFerramenta": "ALP002",
+                  "quantidadeDisponivel": 8
+              },
+              {
+                  "nomeFerramenta": "Multímetro",
+                  "codigoFerramenta": "MLT003",
+                  "quantidadeDisponivel": 4
+              }
+          ],
+          "manual": {
+              "name": "Manual de Manutenção da Esteira",
+              "pages": "69-72, 104-108"
+          }
+      },
+      {
+          "nome": "blah 2",
+          "status": "Pendente",
+          "descricao": "Lubrificação dos rolamentos do motor",
+          "tempo": "1 hora",
+          "data": "2024-11-01",
+          "etapas": [
+              {
+                  "etapa": "Desmontar a carcaça"
+              },
+              {
+                  "etapa": "Aplicar lubrificante"
+              },
+              {
+                  "etapa": "Montar a carcaça novamente"
+              },
+              {
+                  "etapa": "Testar o motor"
+              }
+          ],
+          "ferramentasSugeridas": [
+              {
+                  "nomeFerramenta": "Engraxadeira",
+                  "codigoFerramenta": "ENG004",
+                  "quantidadeDisponivel": 6
+              },
+              {
+                  "nomeFerramenta": "Chave inglesa",
+                  "codigoFerramenta": "CIN005",
+                  "quantidadeDisponivel": 10
+              }
+          ],
+          "manual": {
+              "name": "Manual de Lubrificação",
+              "pages": "23-25, 30-35"
+          }
+      },
+      {
+          "nome": "blah 3",
+          "status": "Pendente",
+          "descricao": "Inspeção dos cabos elétricos",
+          "tempo": "30 minutos",
+          "data": "2024-11-03",
+          "etapas": [
+              {
+                  "etapa": "Verificar a tensão"
+              },
+              {
+                  "etapa": "Inspecionar os cabos"
+              },
+              {
+                  "etapa": "Testar os interruptores"
+              }
+          ],
+          "ferramentasSugeridas": [
+              {
+                  "nomeFerramenta": "Multímetro",
+                  "codigoFerramenta": "MLT003",
+                  "quantidadeDisponivel": 4
+              },
+              {
+                  "nomeFerramenta": "Detector de tensão",
+                  "codigoFerramenta": "DTV006",
+                  "quantidadeDisponivel": 7
+              }
+          ],
+          "manual": {
+              "name": "Manual de Inspeção Elétrica",
+              "pages": "5-7, 10-12"
+          }
+      }
+  ]
+}
